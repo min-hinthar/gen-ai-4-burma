@@ -1,6 +1,6 @@
-# Spring2Action
+# Gen AI 4 Burma
 
-<img src="./public/favicon.ico" alt="logo" width="200"/>
+<img src="./public/GenAI.png" alt="logo" width="200"/>
 
 
 ### 🌐 Demo
