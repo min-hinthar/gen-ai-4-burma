@@ -24,10 +24,10 @@ module.exports = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         crimson: {
-          100: "#FEE9EA",
-          200: "#FAB8BC",
-          400: "#F56E7A",
-          500: "#F03C4A",
+          100: "#910D09",
+          200: "#710C04",
+          400: "#4C0805",
+          500: "#420D09",
           600: "#DC143C",
         },
         dark: {
