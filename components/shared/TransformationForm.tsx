@@ -23,7 +23,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { aspectRatioOptions, creditFee, defaultValues, transformationTypes } from "@/constants"
 import { CustomField } from "./CustomField"
-import { useState, useTransition } from "react"
+import { useEffect, useState, useTransition } from "react"
 import { AspectRatioKey, debounce, deepMergeObjects } from "@/lib/utils"
 import { updateCredits } from "@/lib/actions/user.actions"
 import MediaUploader from "./MediaUploader"
@@ -31,6 +31,7 @@ import TransformedImage from "./TransformedImage"
 import { getCldImageUrl } from "next-cloudinary"
 import { addImage, updateImage } from "@/lib/actions/image.actions"
 import { useRouter } from "next/navigation"
+import { InsufficientCreditsModal } from "./InsufficientCreditModal"
 
 export const formSchema = z.object({
     title: z.string(),
@@ -51,6 +52,12 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
     const [isPending, startTransition] = useTransition();
     const router = useRouter();
 
+    useEffect(() => {
+        if(image && (type === 'restore' || type === 'removeBackground')) {
+            setNewTransformation(transformationType.config)
+        }
+    }, [image, transformationType.config, type])
+    
 
     const initialValues = data && action === 'Update' ? {
         title: data?.title,
@@ -182,14 +189,17 @@ async function onSubmit(values: z.infer<typeof formSchema>) {
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            {/* CHECK CREDIT BALANCE */}
+                {creditBalance < Math.abs(creditFee) && <InsufficientCreditsModal />}
                 <CustomField 
                     control={form.control}
                     name="title"
                     formLabel="Image Title"
                     className='w-full'
-                    render={({ field }) => <Input {...field}
+                    render={({ field }) => <Input {...field} placeholder='Must Enter Title to Save Transformed Image!'
                         className='input-field'
                     />}
+                    
                 />
 
                 {type === 'fill' && (
