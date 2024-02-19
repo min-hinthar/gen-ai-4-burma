@@ -211,6 +211,7 @@ async function onSubmit(values: z.infer<typeof formSchema>) {
                         render={({ field }) => (
                             <Select
                                 onValueChange={(value) => onSelectFieldHandler(value, field.onChange)}
+                                value={field.value}
                             >
                                 <SelectTrigger className="select-field">
                                     <SelectValue placeholder="Select Size" />
@@ -241,7 +242,7 @@ async function onSubmit(values: z.infer<typeof formSchema>) {
                                 type === 'remove' ? 'Object to Remove' : 'Object to Recolor'
                             }
                             className="w-full"
-                            render={(({ field }) => (
+                            render={({ field }) => (
                                 <Input 
                                     value={field.value}
                                     className="input-field"
@@ -252,7 +253,7 @@ async function onSubmit(values: z.infer<typeof formSchema>) {
                                         field.onChange
                                     )}
                                 />
-                            ))}
+                            )}
                         />
 
                         {type === 'recolor' && (
