@@ -164,7 +164,7 @@ async function onSubmit(values: z.infer<typeof formSchema>) {
                     [fieldName === 'prompt' ? 'prompt' : 'to' ]: value
                 }
             }))
-        }, 1000)
+        }, 1000)();
 
         return onChangeField(value);
     }
