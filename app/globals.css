@@ -80,7 +80,7 @@
 }
 
 .root {
-  @apply flex min-h-screen w-full flex-col bg-white lg:flex-row;
+  @apply flex min-h-screen w-full flex-col bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-yellow-200 via-red-500 to-fuchsia-500 lg:flex-row;
 }
 
 .root-container {
@@ -157,7 +157,7 @@
 
   /* 14 */
   .p-14-medium {
-    @apply font-medium text-[14px] leading-[120%];
+    @apply font-medium text-[14px] leading-[120%] text-dark-600;
   }
 
   /* 10 */
